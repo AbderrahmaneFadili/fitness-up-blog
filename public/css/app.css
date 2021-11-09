@@ -31880,6 +31880,15 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.dropdown {
+  top: 55px;
+}
+
+.dropdown-user {
+  right: 10px;
+  top: 56px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
