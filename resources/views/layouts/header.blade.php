@@ -19,7 +19,7 @@
             </li>
 
             <li class="my-4 lg:my-0">
-                <a href="/" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Contact</a>
+                <a href="/contact" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Contact</a>
             </li class="my-4 lg:my-0">
 
             <li class="my-4 lg:my-0">
