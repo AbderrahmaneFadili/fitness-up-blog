@@ -14,17 +14,17 @@
                 <a href="/" class="p-3  hover:bg-gray-700 duration-75 hover:text-white rounded-md">Home</a>
             </li>
 
-            <li class="my-4 lg:my-0">
+            <li class="my-4 lg:my-0 mx-2">
                 <a href="/about" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">About</a>
             </li>
 
-            <li class="my-4 lg:my-0">
+            <li class="my-4 lg:my-0 mr-2">
                 <a href="/contact" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Contact</a>
             </li class="my-4 lg:my-0">
 
             <li class="my-4 lg:my-0">
                 <a href="/blog" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Blog</a>
-            </li class="my-4 lg:my-0">
+            </li>
         </ul>
 
         <ul class="flex menus items-center flex-col md:flex-row">
@@ -32,7 +32,7 @@
                 <a href="/login" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Login</a>
             </li>
 
-            <li class="my-4 lg:my-0"><a href="/register"
+            <li class="my-4 lg:my-0 mx-2"><a href="/register"
                     class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Register</a>
             </li>
 

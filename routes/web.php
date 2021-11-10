@@ -63,3 +63,7 @@ Route::get('/login', function () {
 Route::get('/user/profile', function () {
     return view('user.profile');
 });
+
+Route::get('/user/edit/profile', function () {
+    return view('user.edit');
+});

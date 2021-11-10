@@ -14,7 +14,7 @@
                 </ul>
                 <ul class="mt-6">
                     <li class="mb-2">
-                        <a href="/" class="text-white bg-gray-900 py-2 px-6 rounded-lg text-lg">Edit</a>
+                        <a href="/user/edit/profile" class="text-white bg-gray-900 py-2 px-6 rounded-lg text-lg">Edit</a>
                     </li>
                     <li>
                         <button class="text-white bg-red-900 py-2 px-4 rounded-lg text-lg" type="submit">Delete</button>
