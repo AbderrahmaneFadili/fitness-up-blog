@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegsiterController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,9 +58,9 @@ Route::get('/blog', function () {
 Route::get('/register', [RegsiterController::class, 'index'])->name('register');
 Route::post('/register', [RegsiterController::class, 'store']);
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+//Login Routes
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/user/profile', function () {
     return view('user.profile');
