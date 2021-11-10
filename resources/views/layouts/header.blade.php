@@ -29,7 +29,7 @@
 
         <ul class="flex menus items-center flex-col md:flex-row">
             <li class="my-4 lg:my-0">
-                <a href="/" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Login</a>
+                <a href="/login" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Login</a>
             </li>
 
             <li class="my-4 lg:my-0"><a href="/register"
