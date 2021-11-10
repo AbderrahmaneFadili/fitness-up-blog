@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegsiterController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,10 @@ Route::post('/register', [RegsiterController::class, 'store']);
 //Login Routes
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
+
+//logout Route
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
 
 Route::get('/user/profile', function () {
     return view('user.profile');

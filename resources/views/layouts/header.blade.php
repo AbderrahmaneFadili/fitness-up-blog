@@ -42,7 +42,10 @@
                     <a href="/user/profile" class="p-3">{{ auth()->user()->name }}</a>
                 </li>
                 <li class="my-4 lg:my-0">
-                    <a href="/" class="p-3">Logout</a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="p-3 outline-none">Logout</button>
+                    </form>
                 </li>
             @endauth
         </ul>
