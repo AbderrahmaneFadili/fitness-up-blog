@@ -28,17 +28,23 @@
         </ul>
 
         <ul class="flex menus items-center flex-col md:flex-row">
-            <li class="my-4 lg:my-0">
-                <a href="/login" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Login</a>
-            </li>
+            @guest
+                <li class="my-4 lg:my-0">
+                    <a href="/login" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Login</a>
+                </li>
 
-            <li class="my-4 lg:my-0 mx-2"><a href="/register"
-                    class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Register</a>
-            </li>
-
-            <li class="my-4 lg:my-0">
-                <a href="/user/profile" class="p-3">Abderrahamne Fadili</a>
-            </li>
+                <li class="my-4 lg:my-0 mx-2"><a href="/register"
+                        class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Register</a>
+                </li>
+            @endguest
+            @auth
+                <li class="my-4 lg:my-0">
+                    <a href="/user/profile" class="p-3">{{ auth()->user()->name }}</a>
+                </li>
+                <li class="my-4 lg:my-0">
+                    <a href="/" class="p-3">Logout</a>
+                </li>
+            @endauth
         </ul>
     </nav>
 </header>

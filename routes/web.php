@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegsiterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,11 +51,11 @@ Route::get('/blog', function () {
         ]
     ];
     return view('blog.index', $data);
-});
+})->name('blog');
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+//Register Routes
+Route::get('/register', [RegsiterController::class, 'index'])->name('register');
+Route::post('/register', [RegsiterController::class, 'store']);
 
 Route::get('/login', function () {
     return view('auth.login');

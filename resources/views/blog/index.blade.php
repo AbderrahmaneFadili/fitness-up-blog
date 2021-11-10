@@ -11,8 +11,6 @@
                     {{-- post --}}
 
                     @foreach ($posts as $post)
-
-
                         <div class="post mb-8">
                             <img src='{{ $post['image'] }}' alt="post image" class="mb-5" />
                             <p class="text-xl text-gray-500 mb-2">{{ date('Y/m/d') }}</p>
@@ -27,6 +25,7 @@
                 </div>
                 {{-- side bar --}}
                 <div class="sidebar w-1/4 fixed right-24 top-32">
+                    <hr class="mb-4" />
                     {{-- Categories --}}
                     <h1 class='font-bold text-3xl mb-5'>Categories</h1>
                     <ul class="text-xl">
