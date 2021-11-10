@@ -7,7 +7,7 @@
         <div class="flex justify-center">
             <div class="w-11/12 bg-white p-20 rounded-lg">
                 <h1 class="text-7xl">FitnessUp Blog</h1>
-                <p class="mt-4 mb-6">Read the latest posts about Fitness</p>
+                <p class="mt-4 mb-8">Read the latest posts about Fitness</p>
                 <a href="/" class="text-white bg-gray-900 p-4 my-4 rounded-lg">Join us</a>
             </div>
         </div>

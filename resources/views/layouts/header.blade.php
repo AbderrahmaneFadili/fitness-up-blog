@@ -37,7 +37,7 @@
             </li>
 
             <li class="my-4 lg:my-0">
-                <a href="/" class="p-3">Abderrahamne Fadili</a>
+                <a href="/user/profile" class="p-3">Abderrahamne Fadili</a>
             </li>
         </ul>
     </nav>
