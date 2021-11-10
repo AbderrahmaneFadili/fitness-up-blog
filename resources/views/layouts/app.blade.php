@@ -13,7 +13,7 @@
     <title>Fitnessup - @yield('title')</title>
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200 relative">
     {{-- Main Header --}}
     @include('layouts.header')
     {{-- Main Content --}}
