@@ -24,3 +24,30 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/blog', function () {
+
+    $data = [
+        'posts' => [
+            [
+                'title' => 'This is the title',
+                'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis nobis sint saepe provident
+                            reprehenderit sunt adipisci. Eu....',
+                'image' => 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+            ],
+            [
+                'title' => 'This is the title',
+                'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis nobis sint saepe provident
+                            reprehenderit sunt adipisci. Eu....',
+                'image' => 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+            ],
+            [
+                'title' => 'This is the title',
+                'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis nobis sint saepe provident
+                            reprehenderit sunt adipisci. Eu....',
+                'image' => 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+            ],
+        ]
+    ];
+    return view('blog.index', $data);
+});
