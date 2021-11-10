@@ -51,3 +51,7 @@ Route::get('/blog', function () {
     ];
     return view('blog.index', $data);
 });
+
+Route::get('/register', function () {
+    return view('auth.register');
+});

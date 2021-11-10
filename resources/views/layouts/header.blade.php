@@ -32,7 +32,7 @@
                 <a href="/" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Login</a>
             </li>
 
-            <li class="my-4 lg:my-0"><a href="/"
+            <li class="my-4 lg:my-0"><a href="/register"
                     class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Register</a>
             </li>
 
