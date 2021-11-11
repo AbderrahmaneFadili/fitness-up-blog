@@ -46,4 +46,22 @@
             </div>
         </div>
     </div>
+    <script>
+        const overlay = document.querySelector("div.overlay");
+        const myModal = document.querySelector("#my-modal");
+        const deleteAccount = document.querySelector("#delete-account");
+
+        overlay.addEventListener("click", () => {
+            myModal.classList.add("hidden");
+            overlay.classList.add("hidden");
+        });
+
+        deleteAccount.addEventListener("click", () => {
+            myModal.classList.remove("hidden");
+            myModal.classList.add("block");
+
+            overlay.classList.remove("hidden");
+            overlay.classList.add("block");
+        });
+    </script>
 @endsection

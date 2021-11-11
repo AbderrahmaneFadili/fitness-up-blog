@@ -10,19 +10,19 @@
                 <h1 class="text-3xl font-bold">Add new post.</h1>
 
                 <div class="mx-auto max-w-screen-sm my-11">
-                    <form action="{{ route('blog.add') }}" method="POST">
+                    <form action="{{ route('blog.add') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- image path --}}
                         <div
-                            class="mb-4 image-path overflow-hidden  w-full border-2 pl-3 outline-none p-2 @error('image_path')
+                            class="mb-2 image-path overflow-hidden  w-full border-2 pl-3 outline-none p-2 @error('image_path')
                             border-red-500 @enderror">
-                            <button type="button" class="text-gray-400">Choose image...</button>
+                            <button type="button" id='image-upload-button' class="text-gray-400">Choose image...</button>
 
                             <input type="file" id="image_path" name="image_path" value='{{ old('image_path') }}' />
                         </div>
 
                         @error('image_path')
-                            <p class="text-red-500 my-3">
+                            <p class="text-red-500 mb-2">
                                 {{ $message }}</p>
                         @enderror
                         {{-- Title --}}
@@ -39,7 +39,7 @@
                         @enderror
 
                         {{-- Post Body --}}
-                        <div class="mb-4">
+                        <div class="mb-2">
                             <textarea name="body" id="body" cols="30" rows="3" placeholder="Write the post body..."
                                 class="w-full border-2  pl-3 outline-none p-2 @error('body') border-red-500 @enderror"></textarea>
                         </div>
@@ -51,7 +51,7 @@
 
                         {{-- Post Category --}}
                         <div class="mb-4">
-                            <select name="cetegory" id="cetegory"
+                            <select name="category" id="category"
                                 class="w-full border-2  px-3 outline-none p-2  @error('category') border-red-500 @enderror">
                                 <option value="">Select a category</option>
                                 @foreach ($categories as $category)
@@ -78,4 +78,16 @@
             </div>
         </div>
     </div>
+    <script>
+        /* image upload select */
+        const imageUploadButton = document.getElementById("image-upload-button");
+        const imagePath = document.getElementById("image_path");
+
+
+        imagePath.addEventListener("change", (event) => {
+            if (imagePath.files.length > 0) {
+                imageUploadButton.innerHTML = 'Image selected';
+            }
+        });
+    </script>
 @endsection

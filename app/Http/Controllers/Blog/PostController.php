@@ -29,12 +29,20 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
         //validate input
         $this->validate($request, [
             'image_path' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'title' => 'required|max:255',
             'body' => 'required|max:255',
-
+            'category' => 'required',
         ]);
+
+        //store post
+
+
+
+
+        return redirect()->route('blog');
     }
 }
