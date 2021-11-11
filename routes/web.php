@@ -34,6 +34,9 @@ Route::get('/contact', function () {
 /// Posts routes
 Route::get('/blog', [PostsController::class, 'index'])->name('blog');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
+//Add post Routes
+Route::get('blog/add', [PostController::class, 'create'])->name('blog.add');
+Route::post('blog/add', [PostController::class, 'store']);
 
 //Register Routes
 Route::get('/register', [RegsiterController::class, 'index'])->name('register');

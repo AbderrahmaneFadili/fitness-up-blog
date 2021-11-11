@@ -17,3 +17,24 @@
         margin: initial;
     }
 }
+
+/* add new post drop down */
+.add-new-post {
+    left: 750px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+}
+
+/* show drop down on hover */
+.blog:hover .add-new-post {
+    max-height: initial;
+    padding: 1rem 1.25rem;
+    opacity: 1;
+}

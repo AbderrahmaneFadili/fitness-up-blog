@@ -22,8 +22,16 @@
                 <a href="/contact" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Contact</a>
             </li class="my-4 lg:my-0">
 
-            <li class="my-4 lg:my-0">
-                <a href="/blog" class="p-3 hover:bg-gray-700 duration-75 hover:text-white rounded-md">Blog</a>
+            <li class="my-4 blog lg:my-0">
+                <a href="/blog" class="p-3  hover:bg-gray-700 duration-75 hover:text-white rounded-md">
+                    Blog
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="bg-gray-700 absolute top-14 add-new-post rounded-md text-white  shadow-lg">
+                    <li>
+                        <a href="/blog/add" class="cursor-pointer hover:underline">Add new post</a>
+                    </li>
+                </ul>
             </li>
         </ul>
 
