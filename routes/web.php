@@ -35,7 +35,7 @@ Route::get('/contact', function () {
 Route::get('/blog', [PostsController::class, 'index'])->name('blog');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 //Add post Routes
-Route::get('blog/add', [PostController::class, 'create'])->name('blog.add');
+Route::get('blog/add', [PostController::class, 'create'])->name('blog.add')->middleware(['auth']);
 Route::post('blog/add', [PostController::class, 'store']);
 
 //Register Routes

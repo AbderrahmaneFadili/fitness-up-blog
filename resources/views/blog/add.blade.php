@@ -9,6 +9,11 @@
 
                 <h1 class="text-3xl font-bold">Add new post.</h1>
 
+                @if (session('status'))
+                    <div class="bg-green-500 p-4 my-3 mx-auto max-w-screen-sm rounded-md">
+                        <strong class="text-xl">{{ session('status') }}</strong>
+                    </div>
+                @endif
                 <div class="mx-auto max-w-screen-sm my-11">
                     <form action="{{ route('blog.add') }}" method="POST" enctype="multipart/form-data">
                         @csrf

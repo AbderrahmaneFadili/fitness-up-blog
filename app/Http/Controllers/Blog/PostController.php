@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 
+
     public function index($id)
     {
         return view('blog.post');
@@ -39,10 +40,17 @@ class PostController extends Controller
         ]);
 
         //store post
+        //get the image_path
+        $image_path = $request->file('image_path')->store('public/images/image-uploads');
+
+        $request->user()->posts()->create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'image_path' => $image_path,
+            'category_id' => $request->category
+        ]);
 
 
-
-
-        return redirect()->route('blog');
+        return back()->with('status', 'Post Created !');
     }
 }

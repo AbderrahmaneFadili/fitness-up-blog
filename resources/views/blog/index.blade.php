@@ -25,7 +25,7 @@
                     @endforeach
                 </div>
                 {{-- side bar --}}
-                <div class="sidebar w-1/4 fixed right-24 top-32">
+                <div class="sidebar w-1/4 fixed right-24 top-36">
                     <hr class="mb-4" />
                     {{-- Categories --}}
                     <h1 class='font-bold text-3xl mb-5'>Categories</h1>
