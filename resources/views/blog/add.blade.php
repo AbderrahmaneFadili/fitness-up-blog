@@ -12,6 +12,19 @@
                 <div class="mx-auto max-w-screen-sm my-11">
                     <form action="{{ route('blog.add') }}" method="POST">
                         @csrf
+                        {{-- image path --}}
+                        <div
+                            class="mb-4 image-path overflow-hidden  w-full border-2 pl-3 outline-none p-2 @error('image_path')
+                            border-red-500 @enderror">
+                            <button type="button" class="text-gray-400">Choose image...</button>
+
+                            <input type="file" id="image_path" name="image_path" value='{{ old('image_path') }}' />
+                        </div>
+
+                        @error('image_path')
+                            <p class="text-red-500 my-3">
+                                {{ $message }}</p>
+                        @enderror
                         {{-- Title --}}
                         <div class="mb-4">
                             <input type="text" id="title" name="title" placeholder="Write the post title..."

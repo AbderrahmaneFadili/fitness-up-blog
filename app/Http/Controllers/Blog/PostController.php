@@ -14,13 +14,27 @@ class PostController extends Controller
         return view('blog.post');
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        //get all categories
+        //get all categories for select options
         $categories = Category::all();
 
-        $data = ['categories' => $categories];
+
+        $data = [
+            'categories' => $categories
+        ];
 
         return view('blog.add', $data);
+    }
+
+    public function store(Request $request)
+    {
+        //validate input
+        $this->validate($request, [
+            'image_path' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'title' => 'required|max:255',
+            'body' => 'required|max:255',
+
+        ]);
     }
 }

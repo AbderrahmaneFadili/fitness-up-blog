@@ -14,5 +14,6 @@ class Post extends Model
         'title',
         'body',
         'image_path',
+        'category_id'
     ];
 }

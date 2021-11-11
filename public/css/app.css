@@ -31919,6 +31919,22 @@ video {
   opacity: 1;
 }
 
+/* image path upload */
+
+.image-path {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.image-path input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
