@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegsiterController;
+use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Blog\PostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,32 +30,10 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/blog', function () {
-
-    $data = [
-        'posts' => [
-            [
-                'title' => 'This is the title',
-                'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis nobis sint saepe provident
-                            reprehenderit sunt adipisci. Eu....',
-                'image' => 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-            ],
-            [
-                'title' => 'This is the title',
-                'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis nobis sint saepe provident
-                            reprehenderit sunt adipisci. Eu....',
-                'image' => 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-            ],
-            [
-                'title' => 'This is the title',
-                'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis nobis sint saepe provident
-                            reprehenderit sunt adipisci. Eu....',
-                'image' => 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-            ],
-        ]
-    ];
-    return view('blog.index', $data);
-})->name('blog');
+////// Blog Routes
+/// Posts routes
+Route::get('/blog', [PostsController::class, 'index'])->name('blog');
+Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 //Register Routes
 Route::get('/register', [RegsiterController::class, 'index'])->name('register');

@@ -12,13 +12,14 @@
 
                     @foreach ($posts as $post)
                         <div class="post mb-8">
+                            <p class="text-lg text-gray-400 font-light mb-2">updated at {{ date('Y/m/d') }}</p>
                             <img src='{{ $post['image'] }}' alt="post image" class="mb-5" />
-                            <p class="text-xl text-gray-500 mb-2">{{ date('Y/m/d') }}</p>
                             <h3 class="text-3xl font-bold mb-2">{{ $post['title'] }}</h3>
                             <p class="text-lg mb-7">
                                 {{ $post['body'] }}
                             </p>
-                            <a href="/" class="text-white  bg-gray-900 p-4 rounded-lg">Show more</a>
+                            <a href="{{ route('post', $post['id']) }}" class="text-white  bg-gray-900 p-4 rounded-lg">Show
+                                more</a>
 
                         </div>
                     @endforeach
