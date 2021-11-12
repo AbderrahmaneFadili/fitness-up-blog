@@ -4,17 +4,23 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
 
-
-    public function index($id)
+    //get post by id
+    public function index(Post $post)
     {
-        return view('blog.post');
+        $post = Post::find($post->id);
+
+        return view('blog.post', [
+            'post' => $post
+        ]);
     }
 
+    //create post : add
     public function create()
     {
         //get all categories for select options
@@ -28,6 +34,7 @@ class PostController extends Controller
         return view('blog.add', $data);
     }
 
+    //create post : post
     public function store(Request $request)
     {
 

@@ -8,23 +8,19 @@
             <div class="w-11/12 bg-white  p-10 rounded-lg">
                 {{-- post --}}
                 <div class="post mx-auto ">
-                    <p class="text-lg text-gray-400 font-light mb-2">updated at {{ date('Y/m/d') }}</p>
+                    <p class="text-lg text-gray-400 font-light mb-2">
+                        {{ $post->created_at->diffForHumans() }}
+                    </p>
 
                     <div class="w-full mb-5">
-                        <img src='https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                            alt="post image" class="w-full h-full" />
+                        <img src='{{ asset('images/' . $post->image_path) }}' alt="post image" class="w-full h-full" />
                     </div>
 
 
-                    <h3 class="text-3xl font-bold mb-2">This is the title</h3>
+                    <h3 class="text-3xl font-bold mb-2">{{ $post->title }}</h3>
 
                     <p class="text-lg mb-7">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, at doloribus? Tempore dignissimos
-                        incidunt sequi vel velit iste necessitatibus placeat, iure rem? Repellat vel molestiae maxime
-                        necessitatibus earum. Quo, maxime.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quas consequuntur beatae dolorem et
-                        nostrum aspernatur dolor non, neque deserunt minus exercitationem possimus ab atque numquam
-                        molestiae fugit, qui mollitia.
+                        {{ $post->body }}
                     </p>
                 </div>
 
