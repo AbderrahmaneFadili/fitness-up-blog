@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegsiterController;
 use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Blog\PostLikeController;
 use App\Http\Controllers\Blog\PostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,11 @@ Route::post('/login', [LoginController::class, 'store']);
 
 //logout Route
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+//Post likes routes
+Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('post.likes.store');
+Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('post.likes.destroy');
+
 
 
 Route::get('/user/profile', function () {

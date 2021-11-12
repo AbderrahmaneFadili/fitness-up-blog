@@ -26,15 +26,30 @@
 
                 {{-- posts likes --}}
                 <div class="posts-likes flex items-center">
-                    <form action="/" method="post">
-                        <button class="font-bold text-xl flex items-center" type="submit">
-                            <img class="w-8" src="{{ asset('images/unlike.svg') }}" alt="like" />
-                            <span class="ml-1 mt-2">Like</span>
-                        </button>
-                    </form>
+
+                    @if (!$post->likedBy(auth()->user()))
+                        <form action="{{ route('post.likes.store', $post) }}" method="post">
+                            @csrf
+                            <button class="font-bold text-xl flex items-center" type="submit">
+                                <img class="w-8" src="{{ asset('images/unlike.svg') }}" alt="unlike" />
+                                <span class="ml-1 mt-2">Like</span>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('post.likes.destroy', $post) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="font-bold text-xl flex items-center" type="submit">
+                                <img class="w-8" src="{{ asset('images/like.svg') }}" alt="like" />
+                                <span class="ml-1 mt-2">Unlike</span>
+                            </button>
+                        </form>
+                    @endif
+
 
                     <span class="ml-2 text-xl mt-2">
-                        12 likes
+                        {{ $post->likes->count() }}
+                        {{ Str::plural('like', $post->likes->count()) }}
                     </span>
 
                     <button type="button" class="hover:underline ml-2 text-xl mt-2 font-bold ">22 Comments</button>
