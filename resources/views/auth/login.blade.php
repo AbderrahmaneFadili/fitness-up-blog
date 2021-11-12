@@ -42,6 +42,7 @@
                                 class="w-full text-white bg-gray-900 p-2 rounded-lg text-lg">login</button>
                         </div>
                     </form>
+                    <a href="/register" class="hover:underline">I do not have an account</a>
                 </div>
             </div>
 
