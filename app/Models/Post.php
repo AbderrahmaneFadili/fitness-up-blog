@@ -33,4 +33,10 @@ class Post extends Model
     {
         return $this->likes->contains('user_id', $user->id);
     }
+
+    //post can has many comments
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
 }

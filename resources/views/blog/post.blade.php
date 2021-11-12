@@ -8,17 +8,23 @@
             <div class="w-11/12 bg-white  p-10 rounded-lg">
                 {{-- post --}}
                 <div class="post mx-auto ">
-                    <p class="text-lg text-gray-400 font-light mb-2">
-                        {{ $post->created_at->diffForHumans() }}
-                    </p>
-
-                    <div class="w-full mb-5">
+                    {{-- date --}}
+                    <span class="text-lg text-gray-400 font-light mb-2">
+                        {{ $post->created_at->diffForHumans() }} ,</span>
+                    {{-- Author --}}
+                    <span class="text-lg">written by :
+                        <span class="text-gray-400">
+                            {{ $post->user->name }}
+                        </span>
+                    </span>
+                    {{-- post image --}}
+                    <div class="w-full mb-5 mt-2">
                         <img src='{{ asset('images/' . $post->image_path) }}' alt="post image" class="w-full h-full" />
                     </div>
 
-
+                    {{-- title --}}
                     <h3 class="text-3xl font-bold mb-2">{{ $post->title }}</h3>
-
+                    {{-- body --}}
                     <p class="text-lg mb-7">
                         {{ $post->body }}
                     </p>
@@ -52,19 +58,27 @@
                         {{ Str::plural('like', $post->likes->count()) }}
                     </span>
 
-                    <button type="button" class="hover:underline ml-2 text-xl mt-2 font-bold ">22 Comments</button>
+                    <button type="button" id='show-comment-btn' class="hover:underline ml-2 text-xl mt-2 font-bold ">
+                        {{ $post->comments->count() }}
+                        {{ Str::plural('Comment', $post->comments->count()) }}
+                    </button>
                 </div>
 
                 {{-- post comments --}}
-                <div class="hidden">
+                <div class="hidden mt-7" id='comments-box'>
                     {{-- comment form --}}
                     <div class="">
-                        <form action="/" method="post">
+                        <form action="{{ route('comments.add', $post) }}" method="post">
+                            @csrf
                             <div class="my-2">
                                 <input type="text" id='comment' name='comment' placeholder="Write a comment..."
-                                    class="w-full border-2  pl-3 outline-none p-2" />
+                                    class="w-full border-2  pl-3 outline-none p-2 @error('comment')
+                                        border-red-500 @enderror"
+                                    value='{{ old('comment') }}' />
                             </div>
-
+                            @error('comment')
+                                <p class="text-red-500 my-3">{{ $message }}</p>
+                            @enderror
                             <div>
                                 <button type="submit"
                                     class="text-white bg-gray-900 p-2 rounded-lg text-lg px-3">Comment</button>
@@ -74,57 +88,76 @@
                     {{-- comments list --}}
                     <div class='flex flex-col mt-6'>
                         {{-- comment --}}
-                        <ul>
-                            <li>
-                                {{-- user name --}}
-                                <h3 class="font-bold text-lg">Abdo fadili</h3>
-                                {{-- comment body --}}
-                                <p class="text-xl leading-6">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                </p>
-                                {{-- reply - replies --}}
-                                <div class="flex items-center justify-between w-32 mb-4">
-                                    <span>
-                                        <button class="font-bold hover:underline" type="button">Reply</button>
-                                    </span>
-                                    <span>
-                                        <button class="font-bold hover:underline" type="button">Replies</button>
-                                    </span>
-                                </div>
-                                {{-- replies list --}}
-                                <ul class="ml-6 mb-3">
-                                    {{-- one reply --}}
-                                    <li class="mb-3">
+                        @if (count($post->comments) > 0)
+                            @foreach ($post->comments as $comment)
+
+
+                                <ul>
+                                    <li>
                                         {{-- user name --}}
-                                        <h3 class="font-bold text-lg">Sara smith</h3>
+                                        <h3 class="font-bold text-lg">
+                                            <a href="/user/profile" class="hover:underline">
+                                                {{ $comment->user->name }}
+                                            </a>
+                                        </h3>
                                         {{-- comment body --}}
                                         <p class="text-xl leading-6">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit?
+                                            {{ $comment->body }}
                                         </p>
-                                        <span class="mt-3">
-                                            <button class="font-bold hover:underline" type="button">Reply</button>
-                                        </span>
-                                    </li>
-                                    {{-- one reply --}}
-                                    <li class="mb-3">
-                                        {{-- user name --}}
-                                        <h3 class="font-bold text-lg">Sara smith</h3>
-                                        {{-- comment body --}}
-                                        <p class="text-xl leading-6">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit?
-                                        </p>
-                                        <span class="mt-3">
-                                            <button class="font-bold hover:underline" type="button">Reply</button>
-                                        </span>
+                                        {{-- reply - replies --}}
+                                        <div class="flex items-center justify-between w-32 mb-4">
+                                            <span>
+                                                <button class="font-bold hover:underline" type="button">Reply</button>
+                                            </span>
+                                            <span>
+                                                <button class="font-bold hover:underline" type="button">Replies</button>
+                                            </span>
+                                        </div>
+                                        {{-- replies list --}}
+                                        <ul class="ml-6 mb-3 hidden">
+                                            {{-- one reply --}}
+                                            <li class="mb-3">
+                                                {{-- user name --}}
+                                                <h3 class="font-bold text-lg">Sara smith</h3>
+                                                {{-- comment body --}}
+                                                <p class="text-xl leading-6">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit?
+                                                </p>
+                                                <span class="mt-3">
+                                                    <button class="font-bold hover:underline" type="button">Reply</button>
+                                                </span>
+                                            </li>
+                                            {{-- one reply --}}
+                                            <li class="mb-3">
+                                                {{-- user name --}}
+                                                <h3 class="font-bold text-lg">Sara smith</h3>
+                                                {{-- comment body --}}
+                                                <p class="text-xl leading-6">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit?
+                                                </p>
+                                                <span class="mt-3">
+                                                    <button class="font-bold hover:underline" type="button">Reply</button>
+                                                </span>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            @endforeach
+                        @else
+                            <p class="text-lg">No comments yet.</p>
 
-
-                        </ul>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const commentsBox = document.getElementById('comments-box');
+        const showCommentBtn = document.getElementById('show-comment-btn');
+
+        showCommentBtn.addEventListener('click', () => {
+            commentsBox.classList.remove('hidden');
+        });
+    </script>
 @endsection

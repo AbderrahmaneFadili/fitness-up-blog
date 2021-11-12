@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegsiterController;
+use App\Http\Controllers\Blog\PostCommentController;
 use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\PostLikeController;
 use App\Http\Controllers\Blog\PostsController;
@@ -54,6 +55,8 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('post.likes.store');
 Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('post.likes.destroy');
 
+//Comments Routes
+Route::post('/comments/add/{post}', [PostCommentController::class, 'store'])->name('comments.add');
 
 
 Route::get('/user/profile', function () {
