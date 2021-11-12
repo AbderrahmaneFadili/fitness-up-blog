@@ -19,4 +19,10 @@ class PostComment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    //one comment can has many replies
+    public function replies()
+    {
+        return $this->hasMany(PostComment::class);
+    }
 }
