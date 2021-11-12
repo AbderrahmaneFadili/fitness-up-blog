@@ -87,7 +87,7 @@
                     </div>
                     {{-- comments list --}}
                     <div class='flex flex-col mt-6'>
-                        {{-- comment --}}
+                        {{-- comments --}}
                         @if (count($post->comments) > 0)
                             @foreach ($post->comments as $comment)
 
@@ -96,9 +96,14 @@
                                     <li>
                                         {{-- user name --}}
                                         <h3 class="font-bold text-lg">
-                                            <a href="/user/profile" class="hover:underline">
+                                            @if ($comment->user->name === auth()->user()->name)
+                                                <a href="/user/profile" class="hover:underline">
+                                                    {{ $comment->user->name }}
+                                                </a>
+                                            @else
                                                 {{ $comment->user->name }}
-                                            </a>
+                                            @endif
+
                                         </h3>
                                         {{-- comment body --}}
                                         <p class="text-xl leading-6">
