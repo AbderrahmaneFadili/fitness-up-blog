@@ -33,20 +33,25 @@ class PostController extends Controller
 
         //validate input
         $this->validate($request, [
-            'image_path' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'title' => 'required|max:255',
             'body' => 'required|max:255',
             'category' => 'required',
         ]);
 
         //store post
-        //get the image_path
-        $image_path = $request->file('image_path')->store('public/images/image-uploads');
+        //create image new name
+        $newImageName = time() . '-' . $request->title . '.' . $request->image->extension();
+
+        //move the image to the public/images folder
+        $request->image->move(public_path('images'), $newImageName);
+
+
 
         $request->user()->posts()->create([
             'title' => $request->title,
             'body' => $request->body,
-            'image_path' => $image_path,
+            'image_path' => $newImageName,
             'category_id' => $request->category
         ]);
 

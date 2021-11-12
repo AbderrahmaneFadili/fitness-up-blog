@@ -27,7 +27,7 @@
                     Blog
                     <i class="fas fa-angle-down"></i>
                 </a>
-                <ul class="bg-gray-700 absolute top-14 add-new-post rounded-md text-white  shadow-lg">
+                <ul class="bg-gray-700 absolute top-16 add-new-post rounded-md text-white  shadow-lg">
                     <li>
                         <a href="/blog/add" class="cursor-pointer hover:underline">Add new post</a>
                     </li>

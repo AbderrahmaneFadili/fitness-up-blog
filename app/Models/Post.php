@@ -16,4 +16,10 @@ class Post extends Model
         'image_path',
         'category_id'
     ];
+
+    //each post belongs to a user 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

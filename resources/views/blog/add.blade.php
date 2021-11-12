@@ -17,16 +17,16 @@
                 <div class="mx-auto max-w-screen-sm my-11">
                     <form action="{{ route('blog.add') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- image path --}}
+                        {{-- image --}}
                         <div
-                            class="mb-2 image-path overflow-hidden  w-full border-2 pl-3 outline-none p-2 @error('image_path')
+                            class="mb-2 image-path overflow-hidden  w-full border-2 pl-3 outline-none p-2 @error('image')
                             border-red-500 @enderror">
                             <button type="button" id='image-upload-button' class="text-gray-400">Choose image...</button>
 
-                            <input type="file" id="image_path" name="image_path" value='{{ old('image_path') }}' />
+                            <input type="file" id="image" name="image" value='{{ old('image') }}' />
                         </div>
 
-                        @error('image_path')
+                        @error('image')
                             <p class="text-red-500 mb-2">
                                 {{ $message }}</p>
                         @enderror
@@ -86,7 +86,7 @@
     <script>
         /* image upload select */
         const imageUploadButton = document.getElementById("image-upload-button");
-        const imagePath = document.getElementById("image_path");
+        const imagePath = document.getElementById("image");
 
 
         imagePath.addEventListener("change", (event) => {
