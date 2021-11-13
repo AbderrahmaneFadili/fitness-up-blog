@@ -3,9 +3,9 @@
 @section('title', 'Blog')
 
 @section('content')
-    <div class=" text-center md:text-left mb-5">
+    <div class="text-center md:text-left mb-5">
         <div class="flex justify-center ">
-            <div class="w-11/12 bg-white  p-10 rounded-lg">
+            <div class="w-11/12 bg-white h-auto  p-10 rounded-lg">
                 {{-- post --}}
                 <div class="post mx-auto ">
                     {{-- date --}}
@@ -110,12 +110,10 @@
                                             {{ $comment->body }}
                                         </p>
                                         {{-- reply - replies --}}
-                                        <div class="flex items-center justify-between w-36 mb-4">
+                                        <div class="flex items-center w-28 mb-4">
                                             <span>
-                                                <button class="font-bold hover:underline" type="button">Reply</button>
-                                            </span>
-                                            <span>
-                                                <button class="font-bold hover:underline" type="button">Replies</button>
+                                                <button class="font-bold hover:underline"
+                                                    id='show-reply-btn-{{ $comment->id }}' type="button">Reply</button>
                                             </span>
                                             <span>
                                                 <form action="{{ route('comments.delete', $comment) }}" method="post">
@@ -128,31 +126,48 @@
                                             </span>
                                         </div>
                                         {{-- replies list --}}
-                                        <ul class="ml-6 mb-3 hidden">
-                                            {{-- one reply --}}
-                                            <li class="mb-3">
-                                                {{-- user name --}}
-                                                <h3 class="font-bold text-lg">Sara smith</h3>
-                                                {{-- comment body --}}
-                                                <p class="text-xl leading-6">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit?
-                                                </p>
-                                                <span class="mt-3">
-                                                    <button class="font-bold hover:underline" type="button">Reply</button>
-                                                </span>
-                                            </li>
-                                            {{-- one reply --}}
-                                            <li class="mb-3">
-                                                {{-- user name --}}
-                                                <h3 class="font-bold text-lg">Sara smith</h3>
-                                                {{-- comment body --}}
-                                                <p class="text-xl leading-6">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit?
-                                                </p>
-                                                <span class="mt-3">
-                                                    <button class="font-bold hover:underline" type="button">Reply</button>
-                                                </span>
-                                            </li>
+                                        <ul class="ml-6 mb-3 hidden" id='replies-list-{{ $comment->id }}'>
+
+                                            @foreach ($comment->replies as $reply)
+                                                {{-- one reply --}}
+                                                <li class="mb-3">
+                                                    {{-- user name --}}
+                                                    <h3 class="font-bold text-lg">
+                                                        @if ($reply->user->name === auth()->user()->name)
+                                                            <a href="/user/profile" class="hover:underline">
+                                                                {{ $reply->user->name }}
+                                                            </a>
+                                                        @else
+                                                            {{ $reply->user->name }}
+                                                        @endif
+                                                    </h3>
+                                                    {{-- comment body --}}
+                                                    <p class="text-xl leading-6">
+                                                        {{ $reply->body }}
+                                                    </p>
+                                                    <span class="mt-3">
+                                                        <button class="font-bold hover:underline"
+                                                            type="button">Reply</button>
+                                                    </span>
+                                                </li>
+                                            @endforeach
+
+                                            {{-- reply form --}}
+                                            <form action="{{ route('reply.add', $comment) }}" method="post">
+                                                @csrf
+                                                <div class="my-2">
+                                                    <input type="text" id='reply' name='reply' placeholder="Reply..."
+                                                        class="w-full border-2  focus:outline-black pl-3 outline-none p-2 @error('reply')  border-red-500 @enderror"
+                                                        value='{{ old('reply') }}' />
+                                                </div>
+                                                @error('reply')
+                                                    <p class="text-red-500 my-3">{{ $message }}</p>
+                                                @enderror
+                                                <div>
+                                                    <button type="submit"
+                                                        class="text-white bg-gray-900 p-2 rounded-lg text-lg px-3">Reply</button>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                 </ul>
@@ -170,8 +185,32 @@
         const commentsBox = document.getElementById('comments-box');
         const showCommentBtn = document.getElementById('show-comment-btn');
 
+        const showReplyBtns = document.querySelectorAll('button[id^="show-reply-btn-"]');
+        const repliesLists = document.querySelectorAll('ul[id^="replies-list-"]');
+
+        const replyBtn = document.getElementById('reply-btn');
+        const reply = document.getElementById('reply');
+
+        //show add comment box
         showCommentBtn.addEventListener('click', () => {
             commentsBox.classList.remove('hidden');
+
+        });
+
+        //reply btn
+        showReplyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+
+                const commentId = btn.id.charAt(btn.id.length - 1);
+
+                repliesLists.forEach(reply => {
+                    const replyId = reply.id.charAt(reply.id.length - 1);
+                    if (commentId === replyId) {
+                        reply.classList.remove('hidden');
+                    }
+                })
+
+            });
         });
     </script>
 @endsection

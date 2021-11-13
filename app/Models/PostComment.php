@@ -23,6 +23,6 @@ class PostComment extends Model
     //one comment can has many replies
     public function replies()
     {
-        return $this->hasMany(PostComment::class);
+        return $this->hasMany(PostCommentReply::class);
     }
 }

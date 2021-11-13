@@ -4,9 +4,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegsiterController;
 use App\Http\Controllers\Blog\PostCommentController;
+use App\Http\Controllers\Blog\PostCommentReplyController;
 use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\PostLikeController;
 use App\Http\Controllers\Blog\PostsController;
+use App\Models\PostCommentReply;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +61,9 @@ Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->na
 Route::post('/comments/add/{post}', [PostCommentController::class, 'store'])->name('comments.add');
 Route::delete('comments/delete/{postComment}', [PostCommentController::class, 'destroy'])->name('comments.delete');
 
+//Comment Replies Routes
+Route::post('/reply/add/{postComment}', [PostCommentReplyController::class, 'store'])
+    ->name('reply.add');
 
 Route::get('/user/profile', function () {
     return view('user.profile');
