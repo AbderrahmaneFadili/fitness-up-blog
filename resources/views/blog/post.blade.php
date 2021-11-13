@@ -104,7 +104,12 @@
                                                 {{ $comment->user->name }}
                                             @endif
 
+                                            <span class="font-light text-gray-400">
+                                                {{ $comment->replies->count() }}
+                                                {{ Str::plural('Reply', $comment->replies->count()) }}
+                                            </span>
                                         </h3>
+
                                         {{-- comment body --}}
                                         <p class="text-xl leading-6">
                                             {{ $comment->body }}
@@ -116,6 +121,7 @@
                                                     id='show-reply-btn-{{ $comment->id }}' type="button">Reply</button>
                                             </span>
                                             <span>
+                                                {{-- delete comment --}}
                                                 <form action="{{ route('comments.delete', $comment) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
@@ -141,13 +147,24 @@
                                                             {{ $reply->user->name }}
                                                         @endif
                                                     </h3>
-                                                    {{-- comment body --}}
+                                                    {{-- reply body --}}
                                                     <p class="text-xl leading-6">
                                                         {{ $reply->body }}
                                                     </p>
-                                                    <span class="mt-3">
-                                                        <button class="font-bold hover:underline"
-                                                            type="button">Reply</button>
+                                                    <span class="mt-3 flex">
+                                                        <button class="font-bold hover:underline" type="button"
+                                                            id="reply-btn">Reply</button>
+                                                        {{-- delete reply --}}
+                                                        <span>
+                                                            <form action="{{ route('replies.delete', $reply) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="text-red-800 ml-2">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </form>
+                                                        </span>
                                                     </span>
                                                 </li>
                                             @endforeach
@@ -188,8 +205,8 @@
         const showReplyBtns = document.querySelectorAll('button[id^="show-reply-btn-"]');
         const repliesLists = document.querySelectorAll('ul[id^="replies-list-"]');
 
-        const replyBtn = document.getElementById('reply-btn');
-        const reply = document.getElementById('reply');
+        const replyBtn = document.querySelectorAll('#reply-btn');
+        const replyInput = document.getElementById('reply');
 
         //show add comment box
         showCommentBtn.addEventListener('click', () => {
@@ -206,10 +223,18 @@
                 repliesLists.forEach(reply => {
                     const replyId = reply.id.charAt(reply.id.length - 1);
                     if (commentId === replyId) {
+                        //remove hidden class
                         reply.classList.remove('hidden');
+
                     }
                 })
 
+            });
+        });
+
+        replyBtn.forEach(rb => {
+            rb.addEventListener('click', () => {
+                replyInput.focus();
             });
         });
     </script>

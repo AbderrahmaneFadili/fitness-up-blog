@@ -65,6 +65,9 @@ Route::delete('comments/delete/{postComment}', [PostCommentController::class, 'd
 Route::post('/reply/add/{postComment}', [PostCommentReplyController::class, 'store'])
     ->name('reply.add');
 
+Route::delete('/reply/delete/{postCommentReply}', [PostCommentReplyController::class, 'destroy'])
+    ->name('replies.delete');
+
 Route::get('/user/profile', function () {
     return view('user.profile');
 });
