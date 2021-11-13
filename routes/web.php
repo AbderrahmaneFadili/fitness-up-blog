@@ -57,6 +57,7 @@ Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->na
 
 //Comments Routes
 Route::post('/comments/add/{post}', [PostCommentController::class, 'store'])->name('comments.add');
+Route::delete('comments/delete/{postComment}', [PostCommentController::class, 'destroy'])->name('comments.delete');
 
 
 Route::get('/user/profile', function () {

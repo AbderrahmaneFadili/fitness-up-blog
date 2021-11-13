@@ -110,12 +110,21 @@
                                             {{ $comment->body }}
                                         </p>
                                         {{-- reply - replies --}}
-                                        <div class="flex items-center justify-between w-32 mb-4">
+                                        <div class="flex items-center justify-between w-36 mb-4">
                                             <span>
                                                 <button class="font-bold hover:underline" type="button">Reply</button>
                                             </span>
                                             <span>
                                                 <button class="font-bold hover:underline" type="button">Replies</button>
+                                            </span>
+                                            <span>
+                                                <form action="{{ route('comments.delete', $comment) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-800 ml-2">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
                                             </span>
                                         </div>
                                         {{-- replies list --}}
