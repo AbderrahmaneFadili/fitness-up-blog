@@ -28,8 +28,6 @@ class UserController extends Controller
     {
         $editUser = User::find($user->id);
 
-
-
         //validation
         $this->validate($request, [
             "name" => "required|max:255",
@@ -43,7 +41,12 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-
         return back()->with('status', 'your account is updated');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('register');
     }
 }

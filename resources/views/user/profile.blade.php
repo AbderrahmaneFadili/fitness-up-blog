@@ -41,7 +41,9 @@
             <h3 class="leading-8 mb-9 text-2xl font-medium text-gray-900">Do you want to remove your Account ?</h3>
 
             <div class="items-center px-4 py-3">
-                <form action="/user/delete" method="post">
+                <form action="{{ route('user.profile.delete', $user) }}" method="post">
+                    @csrf
+                    @method('DELETE')
                     <button type="submit" id="ok-btn"
                         class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2">
                         OK

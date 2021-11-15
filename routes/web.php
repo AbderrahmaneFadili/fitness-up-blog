@@ -80,3 +80,4 @@ Route::delete('/reply/delete/{postCommentReply}', [PostCommentReplyController::c
 Route::get('/user/profile/{user}', [UserController::class, 'index'])->name('user.profile');
 Route::get('/user/edit/profile/{user}', [UserController::class, 'edit'])->name('user.profile.edit');
 Route::put('/user/edit/profile/{user}', [UserController::class, 'update'])->name('user.profile.edit');
+Route::delete('/user/edit/profile/{user}', [UserController::class, 'destroy'])->name('user.profile.delete');
