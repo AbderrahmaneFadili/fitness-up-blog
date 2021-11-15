@@ -31,7 +31,8 @@
 
                         {{-- check if the user can (show the html for delete the post) --}}
                         @can('delete', $post)
-                            <form class="ml-auto" action="/" method="post">
+                            <form class="ml-auto" action="{{ route('blog.delete', $post) }}" method="post">
+                                @csrf
                                 @method('DELETE')
                                 <button type="submit"
                                     class="text-red-800 border-2 border-red-800 hover:border-white hover:bg-red-800 hover:text-white py-2 rounded-lg text-lg px-3 duration-75">Delete</button>

@@ -65,4 +65,12 @@ class PostController extends Controller
 
         return back()->with('status', 'Post Created !');
     }
+
+    //delete post : post
+    public function destroy(Post $post)
+    {
+
+        $post->delete();
+        return redirect()->route('blog');
+    }
 }
