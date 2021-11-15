@@ -13,9 +13,16 @@
                         {{ $post->created_at->diffForHumans() }} ,</span>
                     {{-- Author --}}
                     <span class="text-lg">written by :
-                        <span class="text-gray-400">
-                            {{ $post->user->name }}
-                        </span>
+                        @if ($post->user->id === auth()->user()->id)
+                            <a href="/user/profile" class="text-gray-400 hover:underline">
+                                {{ $post->user->name }}
+                            </a>
+                        @else
+                            <span class="text-gray-400">
+                                {{ $post->user->name }}
+                            </span>
+                        @endif
+
                     </span>
                     {{-- post image --}}
                     <div class="w-full mb-5 mt-2">

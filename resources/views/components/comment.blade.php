@@ -2,7 +2,7 @@
 <li>
     <!-- user name -->
     <h3 class="font-bold text-lg">
-        @if ($comment->user->email === auth()->user()->email)
+        @if ($comment->user->id === auth()->user()->id)
             <a href="/user/profile" class="hover:underline">
                 {{ $comment->user->name }}
             </a>
@@ -46,6 +46,7 @@
         @endforeach
 
         <!-- reply form -->
+        {{-- Adding reply for on comment --}}
         <form action="{{ route('reply.add', $comment) }}" method="post">
             @csrf
             <div class="my-2">

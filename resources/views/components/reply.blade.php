@@ -2,7 +2,7 @@
 <li class="mb-3">
     <!-- user name -->
     <h3 class="font-bold text-lg">
-        @if ($reply->user->email === auth()->user()->email)
+        @if ($reply->user->id === auth()->user()->id)
             <a href="/user/profile" class="hover:underline">
                 {{ $reply->user->name }}
             </a>

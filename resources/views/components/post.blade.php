@@ -5,7 +5,7 @@
          {{ $post->created_at->diffForHumans() }} ,</span>
      <!-- Author -->
      <span class="text-lg">written by :
-         @if ($post->user->email === auth()->user()->email)
+         @if ($post->user->id === auth()->user()->id)
              <a href="/user/profile" class="text-gray-400 hover:underline">{{ $post->user->name }}</a>
          @else
              <span class="text-gray-400">
