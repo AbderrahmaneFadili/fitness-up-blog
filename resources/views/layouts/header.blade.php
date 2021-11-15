@@ -47,7 +47,8 @@
             @endguest
             @auth
                 <li class="my-4 lg:my-0">
-                    <a href="/user/profile" class="p-3">{{ auth()->user()->name }}</a>
+                    <a href="{{ route('user.profile', auth()->user()) }}"
+                        class="p-3">{{ auth()->user()->name }}</a>
                 </li>
                 <li class="my-4 lg:my-0">
                     <form action="{{ route('logout') }}" method="post">

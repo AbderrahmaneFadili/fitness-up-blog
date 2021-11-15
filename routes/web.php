@@ -8,6 +8,7 @@ use App\Http\Controllers\Blog\PostCommentReplyController;
 use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\PostLikeController;
 use App\Http\Controllers\Blog\PostsController;
+use App\Http\Controllers\User\UserController;
 use App\Models\PostCommentReply;
 use Illuminate\Support\Facades\Route;
 
@@ -75,10 +76,7 @@ Route::post('/reply/add/{postComment}', [PostCommentReplyController::class, 'sto
 Route::delete('/reply/delete/{postCommentReply}', [PostCommentReplyController::class, 'destroy'])
     ->name('replies.delete');
 
-Route::get('/user/profile', function () {
-    return view('user.profile');
-});
-
-Route::get('/user/edit/profile', function () {
-    return view('user.edit');
-});
+//User Routes
+Route::get('/user/profile/{user}', [UserController::class, 'index'])->name('user.profile');
+Route::get('/user/edit/profile/{user}', [UserController::class, 'edit'])->name('user.profile.edit');
+Route::put('/user/edit/profile/{user}', [UserController::class, 'update'])->name('user.profile.edit');
