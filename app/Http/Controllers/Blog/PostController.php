@@ -73,4 +73,43 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('blog');
     }
+
+    public function edit(Post $post)
+    {
+        $categories = Category::where('id', '<>', $post->category_id)->get();
+
+        $data = [
+            "post" => $post,
+            'categories' => $categories
+        ];
+
+        return view('blog.edit', $data);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $editPost = Post::find($post->id);
+
+
+        //store post
+        //create image new name
+        if ($request->image) {
+            $newImageName = time() . '-' . $request->title  . '.' . $request->image->extension();
+
+            //move the image to the public/images folder
+            $request->image->move(public_path('images'), $newImageName);
+        }
+
+
+        $editPost->update([
+            'image_path' => $request->image ?  $newImageName : $editPost->image_path,
+            'title' => $request->title,
+            'body' => $request->body,
+            'category_id' => $request->category,
+        ]);
+
+        return redirect()->route('post', [
+            'post' => $editPost
+        ]);
+    }
 }

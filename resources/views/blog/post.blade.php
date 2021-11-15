@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Blog')
+@section('title', $post->title)
 
 @section('content')
     <div class="text-center md:text-left mb-5">
@@ -38,6 +38,10 @@
                                     class="text-red-800 border-2 border-red-800 hover:border-white hover:bg-red-800 hover:text-white py-2 rounded-lg text-lg px-3 duration-75">Delete</button>
                             </form>
                         @endcan
+
+                        <a href="{{ route('blog.edit', $post) }}"
+                            class="text-yellow-800 border-2 border-yellow-800 hover:border-white hover:bg-yellow-800 hover:text-white py-2 rounded-lg text-lg px-3 duration-75 ml-2">Edit</a>
+
 
                     </span>
                     {{-- post image --}}

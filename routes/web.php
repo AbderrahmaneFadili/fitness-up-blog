@@ -43,6 +43,9 @@ Route::get('/post/{post}', [PostController::class, 'index'])->name('post');
 Route::get('blog/add', [PostController::class, 'create'])->name('blog.add')->middleware(['auth']);
 Route::post('blog/add', [PostController::class, 'store']);
 Route::delete('blog/delete/{post}', [PostController::class, 'destroy'])->name('blog.delete');
+Route::get('blog/edit/{post}', [PostController::class, 'edit'])->name('blog.edit');
+Route::put('blog/edit/{post}', [PostController::class, 'update'])->name('blog.edit');
+
 
 //Register Routes
 Route::get('/register', [RegsiterController::class, 'index'])->name('register');
