@@ -7,25 +7,40 @@
         <div class="flex justify-center ">
             <div class="w-11/12 bg-white h-auto  p-10 rounded-lg">
                 {{-- post --}}
-                <div class="post mx-auto ">
-                    {{-- date --}}
-                    <span class="text-lg text-gray-400 font-light mb-2">
-                        {{ $post->created_at->diffForHumans() }} ,</span>
-                    {{-- Author --}}
-                    <span class="text-lg">written by :
+                <div class="post mx-auto">
+
+
+                    {{-- Author & date --}}
+                    <span class="text-lg flex items-center">
+                        <span class="text-lg text-gray-400 font-light">
+                            {{ $post->created_at->diffForHumans() }} , </span>
+
+                        <span class="text-gray-800">
+                            &emsp13; written by :&emsp13;
+                        </span>
+
                         @if ($post->user->id === auth()->user()->id)
                             <a href="/user/profile" class="text-gray-400 hover:underline">
                                 {{ $post->user->name }}
                             </a>
                         @else
-                            <span class="text-gray-400">
+                            <span>
                                 {{ $post->user->name }}
                             </span>
                         @endif
 
+                        {{-- check if the user can (show the html for delete the post) --}}
+                        @can('delete', $post)
+                            <form class="ml-auto" action="/" method="post">
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="text-red-800 border-2 border-red-800 hover:border-white hover:bg-red-800 hover:text-white py-2 rounded-lg text-lg px-3 duration-75">Delete</button>
+                            </form>
+                        @endcan
+
                     </span>
                     {{-- post image --}}
-                    <div class="w-full mb-5 mt-2">
+                    <div class="w-full mb-5 mt-4">
                         <img src='{{ asset('images/' . $post->image_path) }}' alt="post image" class="w-full h-full" />
                     </div>
 
@@ -98,8 +113,7 @@
                         @if (count($post->comments) > 0)
                             @foreach ($post->comments as $comment)
                                 {{-- comments --}}
-
-                                <ul>
+                                <ul class="comments">
                                     {{-- comment component --}}
                                     <x-comment :comment='$comment' />
                                 </ul>
