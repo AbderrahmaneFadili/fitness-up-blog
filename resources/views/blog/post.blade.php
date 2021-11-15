@@ -85,108 +85,16 @@
                             </div>
                         </form>
                     </div>
-                    {{-- comments list --}}
+                    {{-- comments --}}
                     <div class='flex flex-col mt-6'>
-                        {{-- comments --}}
+
                         @if (count($post->comments) > 0)
                             @foreach ($post->comments as $comment)
-
+                                {{-- comments --}}
 
                                 <ul>
-                                    <li>
-                                        {{-- user name --}}
-                                        <h3 class="font-bold text-lg">
-                                            @if ($comment->user->name === auth()->user()->name)
-                                                <a href="/user/profile" class="hover:underline">
-                                                    {{ $comment->user->name }}
-                                                </a>
-                                            @else
-                                                {{ $comment->user->name }}
-                                            @endif
-
-                                            <span class="font-light text-gray-400">
-                                                {{ $comment->replies->count() }}
-                                                {{ Str::plural('Reply', $comment->replies->count()) }}
-                                            </span>
-                                        </h3>
-
-                                        {{-- comment body --}}
-                                        <p class="text-xl leading-6">
-                                            {{ $comment->body }}
-                                        </p>
-                                        {{-- reply - replies --}}
-                                        <div class="flex items-center w-28 mb-4">
-                                            <span>
-                                                <button class="font-bold hover:underline"
-                                                    id='show-reply-btn-{{ $comment->id }}' type="button">Reply</button>
-                                            </span>
-                                            <span>
-                                                {{-- delete comment --}}
-                                                <form action="{{ route('comments.delete', $comment) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="text-red-800 ml-2">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
-                                            </span>
-                                        </div>
-                                        {{-- replies list --}}
-                                        <ul class="ml-6 mb-3 hidden" id='replies-list-{{ $comment->id }}'>
-
-                                            @foreach ($comment->replies as $reply)
-                                                {{-- one reply --}}
-                                                <li class="mb-3">
-                                                    {{-- user name --}}
-                                                    <h3 class="font-bold text-lg">
-                                                        @if ($reply->user->name === auth()->user()->name)
-                                                            <a href="/user/profile" class="hover:underline">
-                                                                {{ $reply->user->name }}
-                                                            </a>
-                                                        @else
-                                                            {{ $reply->user->name }}
-                                                        @endif
-                                                    </h3>
-                                                    {{-- reply body --}}
-                                                    <p class="text-xl leading-6">
-                                                        {{ $reply->body }}
-                                                    </p>
-                                                    <span class="mt-3 flex">
-                                                        <button class="font-bold hover:underline" type="button"
-                                                            id="reply-btn">Reply</button>
-                                                        {{-- delete reply --}}
-                                                        <span>
-                                                            <form action="{{ route('replies.delete', $reply) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="text-red-800 ml-2">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </form>
-                                                        </span>
-                                                    </span>
-                                                </li>
-                                            @endforeach
-
-                                            {{-- reply form --}}
-                                            <form action="{{ route('reply.add', $comment) }}" method="post">
-                                                @csrf
-                                                <div class="my-2">
-                                                    <input type="text" id='reply' name='reply' placeholder="Reply..."
-                                                        class="w-full border-2  focus:outline-black pl-3 outline-none p-2 @error('reply')  border-red-500 @enderror"
-                                                        value='{{ old('reply') }}' />
-                                                </div>
-                                                @error('reply')
-                                                    <p class="text-red-500 my-3">{{ $message }}</p>
-                                                @enderror
-                                                <div>
-                                                    <button type="submit"
-                                                        class="text-white bg-gray-900 p-2 rounded-lg text-lg px-3">Reply</button>
-                                                </div>
-                                            </form>
-                                        </ul>
-                                    </li>
+                                    {{-- comment component --}}
+                                    <x-comment :comment='$comment' />
                                 </ul>
                             @endforeach
                         @else
