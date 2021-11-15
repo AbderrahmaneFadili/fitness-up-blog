@@ -17,14 +17,18 @@
     <span class="mt-3 flex">
         <button class="font-bold hover:underline" type="button" id="reply-btn">Reply</button>
         <!-- delete reply -->
-        <span>
-            <form action="{{ route('replies.delete', $reply) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="text-red-800 ml-2">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            </form>
-        </span>
+        <!-- check if the current user can  delete the comment reply (showing the html for delete)-->
+        @can('delete', $reply)
+            <span>
+                <form action="{{ route('replies.delete', $reply) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-800 ml-2">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            </span>
+        @endcan
+
     </span>
 </li>

@@ -26,16 +26,21 @@
             <button class="font-bold hover:underline" id='show-reply-btn-{{ $comment->id }}'
                 type="button">Reply</button>
         </span>
-        <span>
-            <!-- delete comment -->
-            <form action="{{ route('comments.delete', $comment) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="text-red-800 ml-2">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            </form>
-        </span>
+
+        <!-- check if the current user can  delete the comment (showing the html for delete)-->
+        @can('delete', $comment)
+            <span>
+                <!-- delete comment -->
+                <form action="{{ route('comments.delete', $comment) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-800 ml-2">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            </span>
+        @endcan
+
     </div>
     <!-- replies list -->
     <ul class="ml-6 mb-3 hidden" id='replies-list-{{ $comment->id }}'>
