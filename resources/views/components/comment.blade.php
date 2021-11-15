@@ -1,8 +1,8 @@
-{{-- comment --}}
+<!-- comment -->
 <li>
-    {{-- user name --}}
+    <!-- user name -->
     <h3 class="font-bold text-lg">
-        @if ($comment->user->name === auth()->user()->name)
+        @if ($comment->user->email === auth()->user()->email)
             <a href="/user/profile" class="hover:underline">
                 {{ $comment->user->name }}
             </a>
@@ -16,18 +16,18 @@
         </span>
     </h3>
 
-    {{-- comment body --}}
+    <!-- comment body -->
     <p class="text-xl leading-6">
         {{ $comment->body }}
     </p>
-    {{-- reply - replies --}}
+    <!-- reply - replies -->
     <div class="flex items-center w-28 mb-4">
         <span>
             <button class="font-bold hover:underline" id='show-reply-btn-{{ $comment->id }}'
                 type="button">Reply</button>
         </span>
         <span>
-            {{-- delete comment --}}
+            <!-- delete comment -->
             <form action="{{ route('comments.delete', $comment) }}" method="post">
                 @csrf
                 @method('DELETE')
@@ -37,15 +37,15 @@
             </form>
         </span>
     </div>
-    {{-- replies list --}}
+    <!-- replies list -->
     <ul class="ml-6 mb-3 hidden" id='replies-list-{{ $comment->id }}'>
 
         @foreach ($comment->replies as $reply)
-            {{-- Reply Comment --}}
+            <!-- Reply Comment -->
             <x-reply :reply="$reply" />
         @endforeach
 
-        {{-- reply form --}}
+        <!-- reply form -->
         <form action="{{ route('reply.add', $comment) }}" method="post">
             @csrf
             <div class="my-2">

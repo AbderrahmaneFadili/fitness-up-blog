@@ -1,8 +1,8 @@
-{{-- one reply --}}
+<!-- one reply -->
 <li class="mb-3">
-    {{-- user name --}}
+    <!-- user name -->
     <h3 class="font-bold text-lg">
-        @if ($reply->user->name === auth()->user()->name)
+        @if ($reply->user->email === auth()->user()->email)
             <a href="/user/profile" class="hover:underline">
                 {{ $reply->user->name }}
             </a>
@@ -10,13 +10,13 @@
             {{ $reply->user->name }}
         @endif
     </h3>
-    {{-- reply body --}}
+    <!-- reply body -->
     <p class="text-xl leading-6">
         {{ $reply->body }}
     </p>
     <span class="mt-3 flex">
         <button class="font-bold hover:underline" type="button" id="reply-btn">Reply</button>
-        {{-- delete reply --}}
+        <!-- delete reply -->
         <span>
             <form action="{{ route('replies.delete', $reply) }}" method="post">
                 @csrf
