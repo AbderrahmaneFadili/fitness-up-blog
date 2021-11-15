@@ -39,9 +39,11 @@
                             </form>
                         @endcan
 
-                        <a href="{{ route('blog.edit', $post) }}"
-                            class="text-yellow-800 border-2 border-yellow-800 hover:border-white hover:bg-yellow-800 hover:text-white py-2 rounded-lg text-lg px-3 duration-75 ml-2">Edit</a>
-
+                        {{-- check if the user can (show the html for edit the post) --}}
+                        @can('update', $post)
+                            <a href="{{ route('blog.edit', $post) }}"
+                                class="text-yellow-800 border-2 border-yellow-800 hover:border-white hover:bg-yellow-800 hover:text-white py-2 rounded-lg text-lg px-3 duration-75 ml-2">Edit</a>
+                        @endcan
 
                     </span>
                     {{-- post image --}}
