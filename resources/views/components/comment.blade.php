@@ -3,7 +3,7 @@
     <!-- user name -->
     <h3 class="font-bold text-lg">
         @if ($comment->user->id === auth()->user()->id)
-            <a href="/user/profile" class="hover:underline">
+            <a href="{{ route('user.profile', $comment->user) }}" class="hover:underline">
                 {{ $comment->user->name }}
             </a>
         @else

@@ -47,6 +47,9 @@ Route::delete('blog/delete/{post}', [PostController::class, 'destroy'])->name('b
 Route::get('blog/edit/{post}', [PostController::class, 'edit'])->name('blog.edit');
 Route::put('blog/edit/{post}', [PostController::class, 'update'])->name('blog.edit');
 
+//Get Posts by category
+Route::post('blog/post/{category}', [PostsController::class, 'store'])->name('blog.post.category');
+
 
 //Register Routes
 Route::get('/register', [RegsiterController::class, 'index'])->name('register');

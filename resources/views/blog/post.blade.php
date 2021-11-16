@@ -61,7 +61,6 @@
 
                 {{-- posts likes --}}
                 <div class="posts-likes flex items-center">
-
                     @if (!$post->likedBy(auth()->user()))
                         <form action="{{ route('post.likes.store', $post) }}" method="post">
                             @csrf

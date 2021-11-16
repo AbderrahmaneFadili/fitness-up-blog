@@ -26,7 +26,11 @@
                         <ul class="text-xl">
                             @foreach ($categories as $category)
                                 <li class="mb-2">
-                                    <a href="/" class="hover:underline">{{ $category->title }}</a>
+                                    <form action="{{ route('blog.post.category', $category) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="hover:underline">{{ $category->title }}
+                                            ({{ $category->posts()->count() }})</button>
+                                    </form>
                                 </li>
                             @endforeach
                         </ul>

@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class PostsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $categories = Category::all();
@@ -19,6 +24,20 @@ class PostsController extends Controller
             'posts' => $posts,
             'categories' => $categories
         ];
+        return view('blog.index', $data);
+    }
+
+    public function store(Request $request, Category $category)
+    {
+        $categories = Category::all();
+
+        $posts =  Post::where('category_id', $category->id)->paginate(5);
+
+        $data = [
+            'posts' => $posts,
+            'categories' => $categories
+        ];
+
         return view('blog.index', $data);
     }
 }

@@ -6,17 +6,22 @@
      <!-- Author -->
      <span class="text-lg">written by :
          @if ($post->user->id === auth()->user()->id)
-             <a href="/user/profile" class="text-gray-400 hover:underline">{{ $post->user->name }}</a>
+             <a href="{{ route('user.profile', $post->user) }}"
+                 class="text-gray-400 hover:underline">{{ $post->user->name }}</a>
          @else
              <span class="text-gray-400">
                  {{ $post->user->name }}
              </span>
          @endif
+
+         - <span class="font-bold">{{ $post->category->title }}</span>
      </span>
      <!-- post image -->
      <img src='{{ asset('images/' . $post->image_path) }}' alt="post image" class="mb-5 mt-2" />
      <!-- title -->
-     <h3 class="text-3xl font-bold mb-2">{{ $post->title }}</h3>
+     <h3 class="text-3xl font-bold mb-2">
+         <a class="hover:underline" href="{{ route('post', $post->id) }}">{{ $post->title }}</a>
+     </h3>
      <!-- body -->
      <p class="text-lg">
          {{ Str::length($post->body) > 20 ? Str::substr($post->body, 0, Str::length($post->body) - Str::length($post->body) / 2) . '...' : $post->body . '...' }}
