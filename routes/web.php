@@ -9,7 +9,6 @@ use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\PostLikeController;
 use App\Http\Controllers\Blog\PostsController;
 use App\Http\Controllers\User\UserController;
-use App\Models\PostCommentReply;
 use Illuminate\Support\Facades\Route;
 
 /*
