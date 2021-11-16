@@ -37,11 +37,20 @@
                         <!-- Search -->
                         <h1 class='font-bold text-3xl mt-4 mb-5'>Search</h1>
                         <!-- search form -->
-                        <form action="" method="post">
+                        <form action="{{ route('blog.search') }}" method="post">
+                            @csrf
                             <div class="mb-3">
-                                <input type='search' required name='search' id='search'
-                                    class="w-full border-2  pl-3 outline-none p-2" placeholder="Search post..." />
+                                <input type='search' name='search' id='search'
+                                    class="w-full border-2  pl-3 outline-none p-2 @error('search')
+                                 border-red-500 @enderror"
+                                    placeholder="Search post..." />
                             </div>
+
+                            @error('search')
+                                <p class="text-red-500 mb-2">
+                                    {{ $message }}</p>
+                            @enderror
+
                             <div>
                                 <button type="submit"
                                     class="w-full text-white bg-gray-900 p-2 rounded-lg text-lg">Search</button>

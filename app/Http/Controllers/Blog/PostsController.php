@@ -15,6 +15,7 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    //blog
     public function index()
     {
         $categories = Category::all();
@@ -27,11 +28,36 @@ class PostsController extends Controller
         return view('blog.index', $data);
     }
 
+    //store POST
     public function store(Request $request, Category $category)
     {
         $categories = Category::all();
 
         $posts =  Post::where('category_id', $category->id)->paginate(5);
+
+        $data = [
+            'posts' => $posts,
+            'categories' => $categories
+        ];
+
+        return view('blog.index', $data);
+    }
+
+    //search POST
+    public function search(Request $request)
+    {
+        $this->validate($request, [
+            'search' => 'required:max:300',
+        ]);
+
+
+        $categories = Category::all();
+
+        $posts =  Post::where(
+            'title',
+            'like',
+            '%' . $request->search . '%'
+        )->orWhere('body', 'like', '%' . $request->search . '%')->paginate(5);
 
         $data = [
             'posts' => $posts,

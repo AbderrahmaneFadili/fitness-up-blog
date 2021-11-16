@@ -49,7 +49,8 @@ Route::put('blog/edit/{post}', [PostController::class, 'update'])->name('blog.ed
 
 //Get Posts by category
 Route::post('blog/post/{category}', [PostsController::class, 'store'])->name('blog.post.category');
-
+//Get post by title Or Body (Search)
+Route::post('/blog', [PostsController::class, 'search'])->name('blog.search');
 
 //Register Routes
 Route::get('/register', [RegsiterController::class, 'index'])->name('register');
